@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #include <math.h>
 
 float mean_calc(int a[], int n) {
@@ -13,16 +14,6 @@ float mean_calc(int a[], int n) {
 	}
 	// printf("Mean: %.2f.\n", (float)sum / size);
 	return (float)sum / size;
-}
-
-float stand_dev(int a[], int n) {
-	/* Calculation of the standard deviation of an array */
-	float sum = 0.0;
-	float mean = mean_calc(a, n);
-	for (int i = 0; i < n; i++) {
-		sum += powf(a[i]-mean,2);
-	}
-	return sqrtf(sum / (n-1));
 }
 
 void scoring_students(int n) {
@@ -48,7 +39,7 @@ void scoring_students(int n) {
 	}
 	printf("Adress of first element is %p:\n", &scores[0]);
 	printf("Adress of scores is %p:\n", &scores);
-	printf("Length of the scores is %d.\n", (&scores[0]) - &scores[n-1]);
+	printf("Length of the scores is %d.\n", (&scores[0]) - &scores[n - 1]);
 	// Printing the scores of the different students. 
 
 
@@ -60,18 +51,17 @@ void scoring_students(int n) {
 	}
 	printf("The mean score of the students is: %.2f.\n", mean_calc(scores, n));
 	printf("The standard deviation of the scores is: %.2f.\n", stand_dev(scores, n));
-	
+
 	free(scores);
 	scores = NULL;
 }
 
-int main() {
-
-	int n;
-	
-	printf("Introduce the size of the matrix array:");
-	scanf_s("%d", &n);
-	scoring_students(n);
-
-	return 0;
+float stand_dev(int a[], int n) {
+	/* Calculation of the standard deviation of an array */
+	float sum = 0.0;
+	float mean = mean_calc(a, n);
+	for (int i = 0; i < n; i++) {
+		sum += powf(a[i] - mean, 2);
+	}
+	return sqrtf(sum / (n - 1));
 }
